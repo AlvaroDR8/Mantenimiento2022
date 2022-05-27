@@ -1,8 +1,23 @@
 package domain;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
+import security.UserAccount;
+
+import java.util.Collection;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+
+@Access(AccessType.PROPERTY)
 @Entity
 public abstract class Actor extends DomainEntity {
 
@@ -10,16 +25,21 @@ public abstract class Actor extends DomainEntity {
 	private String surname;
 	private String email;
 	private String photo;
-	private Long phone;
+	private String phone;
 
-	public Long getPhone() {
+	public Actor() {
+		super();
+	}
+
+	@NotBlank
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
+	
 	public String getPhoto() {
 		return photo;
 	}
@@ -28,6 +48,8 @@ public abstract class Actor extends DomainEntity {
 		this.photo = photo;
 	}
 
+	@Email
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}
@@ -36,6 +58,7 @@ public abstract class Actor extends DomainEntity {
 		this.email = email;
 	}
 
+	@NotBlank
 	public String getSurname() {
 		return surname;
 	}
@@ -44,6 +67,7 @@ public abstract class Actor extends DomainEntity {
 		this.surname = surname;
 	}
 
+	@NotBlank
 	public String getName() {
 		return name;
 	}
@@ -51,5 +75,46 @@ public abstract class Actor extends DomainEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	// Relationships
+
+	private Collection<SocialIdentity> socialIdentities;
+	private Collection<Comment> comments;
+	private UserAccount userAccount;
+
+	@OneToMany(mappedBy = "actor", cascade = CascadeType.ALL)
+	public Collection<SocialIdentity> getSocialIdentities() {
+		return socialIdentities;
+	}
+
+	public void setSocialIdentities(Collection<SocialIdentity> socialIdentities) {
+		this.socialIdentities = socialIdentities;
+	}
+
+	@OneToMany(mappedBy = "actor", cascade = CascadeType.ALL)
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Collection<Comment> comments) {
+		this.comments = comments;
+	}
+
+	@NotNull
+	@Valid
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	public UserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(UserAccount userAccount) {
+		this.userAccount = userAccount;
+	}
+
+
+
+	
+	
+	
 
 }

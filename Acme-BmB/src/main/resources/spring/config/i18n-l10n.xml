@@ -26,6 +26,14 @@
 		<value>/views/administrator/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
+		<value>/views/property/messages</value>
+		<value>/views/request/messages</value>
+		<value>/views/invoice/messages</value>
+		<value>/views/socialIdentity/messages</value>
+		<value>/views/comment/messages</value>
+		<value>/views/audit/messages</value>
+		<value>/views/attributesExtra/messages</value>
+		<value>/views/valueAttributes/messages</value>
 	</util:list>
 
 </beans>

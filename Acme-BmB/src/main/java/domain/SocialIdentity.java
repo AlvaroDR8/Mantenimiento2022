@@ -1,14 +1,25 @@
 package domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+@Access(AccessType.PROPERTY)
 @Entity
 public class SocialIdentity extends DomainEntity {
 
+	public SocialIdentity() {
+		super();
+	}
+
 	private String nick;
 	private String socialNetwork;
-	private String url;
+	private String profileURL;
 
+	@NotBlank
 	public String getNick() {
 		return nick;
 	}
@@ -17,6 +28,7 @@ public class SocialIdentity extends DomainEntity {
 		this.nick = nick;
 	}
 
+	@NotBlank
 	public String getSocialNetwork() {
 		return socialNetwork;
 	}
@@ -25,12 +37,25 @@ public class SocialIdentity extends DomainEntity {
 		this.socialNetwork = socialNetwork;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getProfileURL() {
+		return profileURL;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setProfileURL(String profileURL) {
+		this.profileURL = profileURL;
+	}
+
+	// Relationships
+
+	private Actor actor;
+
+	@ManyToOne(optional = false)
+	public Actor getActor() {
+		return actor;
+	}
+
+	public void setActor(Actor actor) {
+		this.actor = actor;
 	}
 
 }

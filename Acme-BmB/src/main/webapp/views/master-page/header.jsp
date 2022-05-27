@@ -24,18 +24,38 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="administrator/action-1.do"><spring:message code="master.page.administrator.action.1" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
+					<li><a href="administrator/attributes/list.do"><spring:message code="master.page.administrator.attributes" /></a></li>
+					<li><a href="administrator/valueAttributes/list.do"><spring:message code="master.page.administrator.valueAttributes" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasRole('CUSTOMER')">
-			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
+		<security:authorize access="hasRole('LESSOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.request" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message code="master.page.customer.action.2" /></a></li>					
+					<li><a href="lessor/request/list.do"><spring:message code="master.page.lessor.request" /></a></li>				
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.invoice" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="lessor/invoice/list.do"><spring:message code="master.page.lessor.myInvoices" /></a></li>				
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('TENANT')">
+			<li><a class="fNiv"><spring:message	code="master.page.request" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="tenant/request/list.do"><spring:message code="master.page.tenant.myRequests" /></a></li>				
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.invoice" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="tenant/invoice/list.do"><spring:message code="master.page.tenant.myInvoices" /></a></li>					
 				</ul>
 			</li>
 		</security:authorize>
@@ -45,6 +65,27 @@
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
+			<li><a class="fNiv"><spring:message	code="master.page.audit" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="profile/audit/list.do"><spring:message code="master.page.audit.audits" /></a></li>				
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.property" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="profile/property/list.do"><spring:message code="master.page.property.properties" /></a></li>
+					<security:authorize access="hasRole('LESSOR')">
+						<li><a href="lessor/property/list.do"><spring:message code="master.page.lessor.myProperties" /></a></li>	
+					</security:authorize>
+				</ul>
+			</li>
+			<li><a class="fNiv"><spring:message	code="master.page.comment" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="profile/comment/list.do"><spring:message code="master.page.profile.comments" /></a></li>			
+				</ul>
+			</li>
 			<li>
 				<a class="fNiv"> 
 					<spring:message code="master.page.profile" /> 
@@ -52,9 +93,7 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<li><a href="profile/socialIdentity/list.do"><spring:message code="master.page.profile.socialIdentities" /></a></li>	
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>

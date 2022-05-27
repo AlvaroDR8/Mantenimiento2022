@@ -1,14 +1,24 @@
 package domain;
 
-public class CreditCard {
+import javax.persistence.Access;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import javax.persistence.AccessType;
+
+@Embeddable
+@Access(AccessType.PROPERTY)
+public class CreditCard{
 
 	private String ownerName;
-	private Long cardNumber;
+	private String cardNumber;
 	private int cvv;
 	private int caducityMonth;
-	private int caducityDay;
+	private int caducityYear;
 	private String company;
 
+	@NotBlank
 	public String getCompany() {
 		return company;
 	}
@@ -17,14 +27,16 @@ public class CreditCard {
 		this.company = company;
 	}
 
-	public int getCaducityDay() {
-		return caducityDay;
+	@NotNull
+	public int getCaducityYear() {
+		return caducityYear;
 	}
 
-	public void setCaducityDay(int caducityDay) {
-		this.caducityDay = caducityDay;
+	public void setCaducityYear(int caducityYear) {
+		this.caducityYear = caducityYear;
 	}
 
+	@NotNull
 	public int getCaducityMonth() {
 		return caducityMonth;
 	}
@@ -33,6 +45,7 @@ public class CreditCard {
 		this.caducityMonth = caducityMonth;
 	}
 
+	@NotNull
 	public int getCvv() {
 		return cvv;
 	}
@@ -41,14 +54,16 @@ public class CreditCard {
 		this.cvv = cvv;
 	}
 
-	public Long getCardNumber() {
+	@NotBlank
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(Long cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
+	@NotBlank
 	public String getOwnerName() {
 		return ownerName;
 	}
